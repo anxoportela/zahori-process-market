@@ -37,6 +37,7 @@ public class MarketLogin extends Page {
     private PageElement email = new PageElement(this, "Email input", Locator.id("email"));
     private PageElement passwd = new PageElement(this, "Password input", Locator.id("passwd"));
     private PageElement loginOkHeader = new PageElement(this, "Login OK Header", Locator.xpath("//h1[normalize-space()='My account']"));
+    private PageElement loginKoHeader = new PageElement(this, "Login KO Header", Locator.xpath("//li[normalize-space()='Authentication failed.']"));
 
     public MarketLogin(io.zahori.framework.core.TestContext testContext) {
         super(testContext);
@@ -54,6 +55,10 @@ public class MarketLogin extends Page {
 
     public boolean loginOk() {
         return logoImg.waitElementVisible() && loginOkHeader.waitElementVisible();
+    }
+
+    public boolean loginKo(){
+        return logoImg.waitElementVisible() && loginKoHeader.waitElementVisible();
     }
 
 

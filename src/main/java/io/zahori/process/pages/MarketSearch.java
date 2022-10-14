@@ -27,14 +27,14 @@ import io.zahori.framework.core.Locator;
 import io.zahori.framework.core.Page;
 import io.zahori.framework.core.PageElement;
 
-public class MarketSearchResult extends Page {
+public class MarketSearch extends Page {
 
     private static final long serialVersionUID = -748592645718241825L;
 
     private PageElement logoImg = new PageElement(this, "Logo Image", Locator.xpath("//img[@alt='My Store']"));
     private PageElement rsltHeader = new PageElement(this, "Result Search Header", Locator.xpath("//h1[contains(@class,'product-listing')]"));
 
-    public MarketSearchResult(io.zahori.framework.core.TestContext testContext) {
+    public MarketSearch(io.zahori.framework.core.TestContext testContext) {
         super(testContext);
     }
 
