@@ -25,7 +25,9 @@ package io.zahori.process;
 
 import io.zahori.framework.core.TestContext;
 import io.zahori.model.process.CaseExecution;
-import io.zahori.process.flujos.RE_Login;
+import io.zahori.process.flows.Home;
+import io.zahori.process.flows.Login;
+import io.zahori.process.flows.Search;
 import io.zahori.process.framework.ZahoriProcess;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,17 +44,25 @@ public class MarketDemo extends ZahoriProcess {
     @Override
     public void run(TestContext testContext, CaseExecution caseExecution) {
 
-        //Import reusable
-        RE_Login login = new RE_Login();
+        // Import flows
+        Home home = new Home();
+        Login login = new Login();
+        Search search = new Search();
 
         // Read case data
         Map<String, String> data = caseExecution.getCas().getDataMap();
-        String flujo = data.get("Flujo");
+        String flow = data.get("Flow");
 
+        // Going to homepage
+        home.run(testContext,caseExecution);
 
-        switch (flujo) {
-            case "TEST":
+        // Flow execution
+        switch (flow) {
+            case "LOGIN":
                 login.run(testContext, caseExecution);
+                break;
+            case "SEARCH":
+                search.run(testContext, caseExecution);
                 break;
             default:
                 break;
