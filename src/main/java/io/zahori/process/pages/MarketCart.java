@@ -34,7 +34,12 @@ public class MarketCart extends Page {
 
     private PageElement logoImg = new PageElement(this, "Logo Image", Locator.xpath("//img[@alt='My Store']"));
     private PageElement cartHeader = new PageElement(this, "Login Header", Locator.xpath("//h1[@id='cart_title']"));
-
+    private PageElement decreaseQuantity = new PageElement(this, "Decrease item quantity", Locator.xpath("//i[@class='icon-minus']"));
+    private PageElement increaseQuantity = new PageElement(this, "Increase item quantity", Locator.xpath("//i[@class='icon-plus']"));
+    private PageElement writeQuantity = new PageElement(this, "Input item quantity", Locator.xpath("//input[contains(@class,'cart_quantity_input')]"));
+    private PageElement deleteItem = new PageElement(this, "Delete item from cart", Locator.xpath("//i[@class='icon-trash']"));
+    private PageElement continueCheckout = new PageElement(this, "Continue with checkout", Locator.xpath("//a[@class='button btn btn-default standard-checkout button-medium']"));
+    private PageElement continueShopping = new PageElement(this, "Continue shopping", Locator.xpath("//a[normalize-space()='Continue shopping']"));
 
     public MarketCart(io.zahori.framework.core.TestContext testContext) {
         super(testContext);
@@ -42,6 +47,34 @@ public class MarketCart extends Page {
 
     public boolean pageLoaded() {
         return logoImg.waitElementVisible() && cartHeader.waitElementVisible();
+    }
+
+    public void rmQuantity(int n){
+        for (int i = 0; i < n; i++) {
+            decreaseQuantity.click();
+        }
+    }
+
+    public void addQuantity(int n){
+        for (int i = 0; i < n; i++) {
+            increaseQuantity.click();
+        }
+    }
+
+    public void inputQuantity(int n){
+        writeQuantity.write(Integer.toString(n));
+    }
+
+    public void rmItem(){
+        deleteItem.click();
+    }
+
+    public void clickCheckout(){
+        continueCheckout.click();
+    }
+
+    public void clickReturnShop(){
+        continueShopping.click();
     }
 
 

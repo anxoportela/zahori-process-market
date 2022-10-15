@@ -26,10 +26,7 @@ package io.zahori.process;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.zahori.framework.core.TestContext;
 import io.zahori.model.process.CaseExecution;
-import io.zahori.process.flows.Item;
-import io.zahori.process.flows.Home;
-import io.zahori.process.flows.Login;
-import io.zahori.process.flows.Search;
+import io.zahori.process.flows.*;
 import io.zahori.process.framework.ZahoriProcess;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,6 +48,7 @@ public class MarketDemo extends ZahoriProcess {
         Login login = new Login();
         Search search = new Search();
         Item item = new Item();
+        Cart cart = new Cart();
 
         // Getting flow type
         Map<String, String> data = caseExecution.getCas().getDataMap();
@@ -64,8 +62,11 @@ public class MarketDemo extends ZahoriProcess {
             case "SEARCH":
                 search.run(testContext, caseExecution);
                 break;
-            case "CART":
+            case "ITEM":
                 item.run(testContext, caseExecution);
+                break;
+            case "CART":
+                cart.run(testContext, caseExecution);
                 break;
             default:
                 break;
