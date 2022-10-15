@@ -26,30 +26,24 @@ package io.zahori.process.pages;
 import io.zahori.framework.core.Locator;
 import io.zahori.framework.core.Page;
 import io.zahori.framework.core.PageElement;
+import org.openqa.selenium.Keys;
 
-public class MarketSearch extends Page {
+public class MarketCart extends Page {
 
-    private static final long serialVersionUID = -748592645718241825L;
+    private static final long serialVersionUID = -345345465237865L;
 
     private PageElement logoImg = new PageElement(this, "Logo Image", Locator.xpath("//img[@alt='My Store']"));
-    private PageElement rsltHeader = new PageElement(this, "Result Search Header", Locator.xpath("//h1[contains(@class,'product-listing')]"));
+    private PageElement cartHeader = new PageElement(this, "Login Header", Locator.xpath("//h1[@id='cart_title']"));
 
-    public MarketSearch(io.zahori.framework.core.TestContext testContext) {
+
+    public MarketCart(io.zahori.framework.core.TestContext testContext) {
         super(testContext);
     }
 
     public boolean pageLoaded() {
-        return logoImg.waitElementVisible() && rsltHeader.waitElementVisible();
+        return logoImg.waitElementVisible() && cartHeader.waitElementVisible();
     }
 
-    public boolean checkResults(String text) {
-        PageElement rsltCheckText = new PageElement(this, "Results check", Locator.xpath("//a[contains(@title,'" + text + "')][normalize-space()='" + text + "']"));
-        return rsltCheckText.waitElementVisible();
-    }
 
-    public void clickResult(String text){
-        PageElement rsltText = new PageElement(this, "Results check", Locator.xpath("//a[contains(@title,'" + text + "')][normalize-space()='" + text + "']"));
-        rsltText.click();
-    }
 
 }
