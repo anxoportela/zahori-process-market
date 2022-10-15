@@ -3,7 +3,6 @@ package io.zahori.process.flows;
 import io.zahori.framework.core.TestContext;
 import io.zahori.model.process.CaseExecution;
 import io.zahori.process.pages.MarketHome;
-import io.zahori.process.pages.MarketLogin;
 import io.zahori.process.pages.MarketSearch;
 
 import java.util.ArrayList;
@@ -15,38 +14,33 @@ public class Search {
 
     public void run(TestContext testContext, CaseExecution caseExecution) {
 
-        // Loading page objects
+        // Import page objects
         MarketHome home = new MarketHome(testContext);
         MarketSearch search = new MarketSearch(testContext);
+
+        // Import flows
+        Login login = new Login();
 
         // Retrieve case data
         Map<String, String> data = caseExecution.getCas().getDataMap();
 
-        // Converting login field to arraylist
-        List<String> loginFlags = new ArrayList<>(Arrays.asList(data.get("Login").split(",")));
-
-        // Getting doLogin flag
-        boolean doLogin = Boolean.parseBoolean(loginFlags.get(0));
+        // Getting item name
+        String itemName = new ArrayList<>(Arrays.asList(data.get("Item").split(","))).get(0);
 
         // Check if login is needed and do it
-        if(doLogin){
-            Login login = new Login();
-            login.run(testContext,caseExecution);
-            Home homePage = new Home();
-            homePage.run(testContext, caseExecution);
-        }
+        login.run(testContext, caseExecution);
 
         // Search item
-        home.writeSearchInput(data.get("ItemSearch"));
+        home.writeSearchInput(itemName);
         home.clickSearchBtn();
 
         // Check if the results page loaded correctly
-        if(search.pageLoaded()){
-            testContext.logStepPassedWithScreenshot("Search result page loaded");
+        if (search.pageLoaded()) {
+            testContext.logStepPassedWithScreenshot("Search result page loaded correctly");
         }
 
         // Check if the correct result is displayed
-        if(search.checkResults(data.get("ItemSearch"))){
+        if (search.checkResults(itemName)) {
             testContext.logStepPassedWithScreenshot("Search result correct");
         }
 

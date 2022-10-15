@@ -14,9 +14,12 @@ public class Login {
 
     public void run(TestContext testContext, CaseExecution caseExecution) {
 
-        // Loading page objects
+        // Import page objects
         MarketHome home = new MarketHome(testContext);
         MarketLogin login = new MarketLogin(testContext);
+
+        // Import flows
+        Home homePage = new Home();
 
         // Retrieve case data
         Map<String, String> data = caseExecution.getCas().getDataMap();
@@ -30,14 +33,15 @@ public class Login {
         String password = loginFlags.get(2);
         boolean validLogin = Boolean.parseBoolean(loginFlags.get(3));
 
-        // Going to login page and check if it's loaded
-        home.clickLogin();
-        if (login.pageLoaded()) {
-            testContext.logStepPassedWithScreenshot("Login page loaded");
-        }
+        // Going to homepage
+        homePage.run(testContext, caseExecution);
 
-        // Do login according to parameters retrieved
+        // Do login or not according to parameters retrieved
         if (doLogin) {
+            home.clickLogin();
+            if (login.pageLoaded()) {
+                testContext.logStepPassedWithScreenshot("Login page loaded correctly");
+            }
             login.doLogin(email, password);
             if (validLogin) {
                 if (login.loginOk()) {

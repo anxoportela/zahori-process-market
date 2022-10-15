@@ -10,7 +10,7 @@ public class Home {
 
     public void run(TestContext testContext, CaseExecution caseExecution) {
 
-        // Loading page objects
+        // Import page objects
         MarketHome home = new MarketHome(testContext);
 
         // Open homepage
@@ -19,7 +19,7 @@ public class Home {
 
         // Check if homepage is loaded
         if (home.pageLoaded()) {
-            testContext.logStepPassedWithScreenshot("Page loaded");
+            testContext.logStepPassedWithScreenshot("Home page loaded correctly");
         }
 
     }
