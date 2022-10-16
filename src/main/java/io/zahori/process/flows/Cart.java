@@ -39,7 +39,7 @@ public class Cart {
         if (cart.pageLoaded()){
             testContext.logStepPassedWithScreenshot("Cart page loaded correctly");
         } else {
-            testContext.logStepFailedWithScreenshot("Cart page not loaded");
+            testContext.logStepFailed("Cart page not loaded");
         }
 
         // Add n quantity to item

@@ -42,20 +42,20 @@ public class Login {
             if (login.pageLoaded()) {
                 testContext.logStepPassedWithScreenshot("Login page loaded correctly");
             } else {
-                testContext.logStepFailedWithScreenshot("Login page not loaded");
+                testContext.logStepFailed("Login page not loaded");
             }
             login.doLogin(email, password);
             if (validLogin) {
                 if (login.loginOk()) {
                     testContext.logStepPassedWithScreenshot("Login OK");
                 } else {
-                    testContext.logStepFailedWithScreenshot("Error validating login ok");
+                    testContext.logStepFailed("Error validating login ok");
                 }
             } else {
                 if (login.loginKo()) {
                     testContext.logStepPassedWithScreenshot("Login KO");
                 } else {
-                    testContext.logStepFailedWithScreenshot("Error validating login ko");
+                    testContext.logStepFailed("Error validating login ko");
                 }
             }
         }

@@ -43,7 +43,7 @@ public class Item {
         if (item.pageLoaded()){
             testContext.logStepPassedWithScreenshot("Item page loaded correctly");
         } else {
-            testContext.logStepFailedWithScreenshot("Item page not loaded");
+            testContext.logStepFailed("Item page not loaded");
         }
 
         // Add n items to cart
@@ -61,7 +61,7 @@ public class Item {
         if (item.checkItemAdded()){
             testContext.logStepPassedWithScreenshot("Item added to the cart correctly");
         } else {
-            testContext.logStepFailedWithScreenshot("Error adding item to cart");
+            testContext.logStepFailed("Error adding item to cart");
         }
 
         // Go to checkout page or return to item page
@@ -72,7 +72,7 @@ public class Item {
             if (item.pageLoaded()){
                 testContext.logStepPassedWithScreenshot("Returned to item page correctly");
             } else {
-                testContext.logStepFailedWithScreenshot("Error returning to item page");
+                testContext.logStepFailed("Error returning to item page");
             }
         }
 

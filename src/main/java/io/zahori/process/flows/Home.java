@@ -19,7 +19,7 @@ public class Home {
         if (home.pageLoaded()) {
             testContext.logStepPassedWithScreenshot("Home page loaded correctly");
         } else {
-            testContext.logStepFailedWithScreenshot("Home Page not loaded");
+            testContext.logStepFailed("Home Page not loaded");
         }
 
     }

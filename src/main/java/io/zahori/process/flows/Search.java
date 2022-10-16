@@ -35,7 +35,7 @@ public class Search {
         if(home.checkInputText(itemName)){
             testContext.logStepPassedWithScreenshot("Value wrote on search input");
         } else {
-            testContext.logStepFailedWithScreenshot("Input value error");
+            testContext.logStepFailed("Input value error");
         }
         home.clickSearchBtn();
 
@@ -43,14 +43,14 @@ public class Search {
         if (search.pageLoaded()){
             testContext.logStepPassedWithScreenshot("Search result page loaded correctly");
         } else {
-            testContext.logStepFailedWithScreenshot("Search result page not loaded");
+            testContext.logStepFailed("Search result page not loaded");
         }
 
         // Check if the correct results are displayed
         if (search.checkResults(itemName)){
             testContext.logStepPassedWithScreenshot("Search result correct");
         } else {
-            testContext.logStepFailedWithScreenshot("Search result incorrect");
+            testContext.logStepFailed("Search result incorrect");
         }
 
     }
