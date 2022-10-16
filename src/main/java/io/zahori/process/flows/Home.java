@@ -16,11 +16,7 @@ public class Home {
         testContext.getBrowser().loadPage(url);
 
         // Check if homepage is loaded
-        if (home.pageLoaded()) {
-            testContext.logStepPassedWithScreenshot("Home page loaded correctly");
-        } else {
-            testContext.logStepFailedWithScreenshot("Home Page not loaded");
-        }
+        if (home.pageLoaded()) testContext.logStepPassedWithScreenshot("Home page loaded correctly");
 
     }
 }

@@ -40,14 +40,10 @@ public class Item {
 
         // Click on item and check that item page load correctly
         search.clickResult(itemName);
-        if (item.pageLoaded()){
-            testContext.logStepPassedWithScreenshot("Item page loaded correctly");
-        } else {
-            testContext.logStepFailedWithScreenshot("Item page not loaded");
-        }
+        if (item.pageLoaded()) testContext.logStepPassedWithScreenshot("Item page loaded correctly");
 
         // Add n items to cart
-        if (itemCount > 0){
+        if (itemCount > 0) {
             item.addItems(itemCount);
             testContext.logStepPassedWithScreenshot("Changed item quantity");
         }
@@ -58,22 +54,14 @@ public class Item {
 
         // Add item to cart
         item.clickAddCart();
-        if (item.checkItemAdded()){
-            testContext.logStepPassedWithScreenshot("Item added to the cart correctly");
-        } else {
-            testContext.logStepFailedWithScreenshot("Error adding item to cart");
-        }
+        if (item.checkItemAdded()) testContext.logStepPassedWithScreenshot("Item added to the cart correctly");
 
         // Go to checkout page or return to item page
         if (goCheckout) {
             item.continueCheckout();
         } else {
             item.continueShop();
-            if (item.pageLoaded()){
-                testContext.logStepPassedWithScreenshot("Returned to item page correctly");
-            } else {
-                testContext.logStepFailedWithScreenshot("Error returning to item page");
-            }
+            if (item.pageLoaded()) testContext.logStepPassedWithScreenshot("Returned to item page correctly");
         }
 
     }
