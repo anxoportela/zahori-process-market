@@ -86,4 +86,8 @@ public class MarketHome extends Page {
         searchBtn.click();
     }
 
+    public boolean checkInputText(String text){
+        return searchInput.getInputValue().equals(text);
+    }
+
 }

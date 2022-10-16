@@ -36,20 +36,26 @@ public class Login {
         // Going to homepage
         homePage.run(testContext, caseExecution);
 
-        // Do login or not according to parameters retrieved
+        // Login or not according to parameters retrieved
         if (doLogin) {
             home.clickLogin();
             if (login.pageLoaded()) {
                 testContext.logStepPassedWithScreenshot("Login page loaded correctly");
+            } else {
+                testContext.logStepFailedWithScreenshot("Login page not loaded");
             }
             login.doLogin(email, password);
             if (validLogin) {
                 if (login.loginOk()) {
                     testContext.logStepPassedWithScreenshot("Login OK");
+                } else {
+                    testContext.logStepFailedWithScreenshot("Error validating login ok");
                 }
             } else {
                 if (login.loginKo()) {
                     testContext.logStepPassedWithScreenshot("Login KO");
+                } else {
+                    testContext.logStepFailedWithScreenshot("Error validating login ko");
                 }
             }
         }

@@ -4,8 +4,6 @@ import io.zahori.framework.core.TestContext;
 import io.zahori.model.process.CaseExecution;
 import io.zahori.process.pages.MarketHome;
 
-import java.util.Map;
-
 public class Home {
 
     public void run(TestContext testContext, CaseExecution caseExecution) {
@@ -20,6 +18,8 @@ public class Home {
         // Check if homepage is loaded
         if (home.pageLoaded()) {
             testContext.logStepPassedWithScreenshot("Home page loaded correctly");
+        } else {
+            testContext.logStepFailedWithScreenshot("Home Page not loaded");
         }
 
     }

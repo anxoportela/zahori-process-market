@@ -40,37 +40,41 @@ public class Item {
 
         // Click on item and check that item page load correctly
         search.clickResult(itemName);
-        if (item.pageLoaded()) {
+        if (item.pageLoaded()){
             testContext.logStepPassedWithScreenshot("Item page loaded correctly");
+        } else {
+            testContext.logStepFailedWithScreenshot("Item page not loaded");
         }
 
         // Add n items to cart
-        if (itemCount > 0) {
+        if (itemCount > 0){
             item.addItems(itemCount);
+            testContext.logStepPassedWithScreenshot("Changed item quantity");
         }
 
         // Select size
         item.changeSize(itemSize);
+        testContext.logStepPassedWithScreenshot("Changed item size");
 
         // Add item to cart
         item.clickAddCart();
-        if (item.checkItemAdded()) {
+        if (item.checkItemAdded()){
             testContext.logStepPassedWithScreenshot("Item added to the cart correctly");
+        } else {
+            testContext.logStepFailedWithScreenshot("Error adding item to cart");
         }
 
         // Go to checkout page or return to item page
         if (goCheckout) {
             item.continueCheckout();
-            if (cart.pageLoaded()) {
-                testContext.logStepPassedWithScreenshot("Cart page loaded correctly");
-            }
         } else {
             item.continueShop();
-            if (item.pageLoaded()) {
+            if (item.pageLoaded()){
                 testContext.logStepPassedWithScreenshot("Returned to item page correctly");
+            } else {
+                testContext.logStepFailedWithScreenshot("Error returning to item page");
             }
         }
-
 
     }
 }
