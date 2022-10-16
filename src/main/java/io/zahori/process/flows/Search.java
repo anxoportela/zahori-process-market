@@ -7,6 +7,7 @@ import io.zahori.process.pages.MarketSearch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class Search {
@@ -31,14 +32,26 @@ public class Search {
 
         // Search item
         home.writeSearchInput(itemName);
-        if (home.checkInputText(itemName)) testContext.logStepPassedWithScreenshot("Value wrote on search input");
+        if(home.checkInputText(itemName)){
+            testContext.logStepPassedWithScreenshot("Value wrote on search input");
+        } else {
+            testContext.logStepFailedWithScreenshot("Input value error");
+        }
         home.clickSearchBtn();
 
         // Check if the results' page loaded correctly
-        if (search.pageLoaded()) testContext.logStepPassedWithScreenshot("Search result page loaded correctly");
+        if (search.pageLoaded()){
+            testContext.logStepPassedWithScreenshot("Search result page loaded correctly");
+        } else {
+            testContext.logStepFailedWithScreenshot("Search result page not loaded");
+        }
 
         // Check if the correct results are displayed
-        if (search.checkResults(itemName)) testContext.logStepPassedWithScreenshot("Search result correct");
+        if (search.checkResults(itemName)){
+            testContext.logStepPassedWithScreenshot("Search result correct");
+        } else {
+            testContext.logStepFailedWithScreenshot("Search result incorrect");
+        }
 
     }
 }

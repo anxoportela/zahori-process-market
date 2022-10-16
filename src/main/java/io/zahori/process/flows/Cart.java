@@ -36,7 +36,11 @@ public class Cart {
         itemPage.run(testContext, caseExecution);
 
         // Check if cart page loaded correctly
-        if (cart.pageLoaded()) testContext.logStepPassedWithScreenshot("Cart page loaded correctly");
+        if (cart.pageLoaded()){
+            testContext.logStepPassedWithScreenshot("Cart page loaded correctly");
+        } else {
+            testContext.logStepFailedWithScreenshot("Cart page not loaded");
+        }
 
         // Add n quantity to item
         if (incQ > 0) {
