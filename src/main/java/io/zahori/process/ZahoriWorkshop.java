@@ -23,18 +23,16 @@ package io.zahori.process;
  * #L%
  */
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.zahori.framework.core.TestContext;
 import io.zahori.model.process.CaseExecution;
 import io.zahori.process.flows.*;
 import io.zahori.process.framework.ZahoriProcess;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 @RestController
-public class MarketDemo extends ZahoriProcess {
+public class ZahoriWorkshop extends ZahoriProcess {
 
     /*
      * Warning! Do not declare any variables here, values are overwritten when
@@ -46,7 +44,6 @@ public class MarketDemo extends ZahoriProcess {
 
         // Import flows
         Login login = new Login();
-        Search search = new Search();
         Item item = new Item();
         Cart cart = new Cart();
 
@@ -58,9 +55,6 @@ public class MarketDemo extends ZahoriProcess {
         switch (flow) {
             case "LOGIN":
                 login.run(testContext, caseExecution);
-                break;
-            case "SEARCH":
-                search.run(testContext, caseExecution);
                 break;
             case "ITEM":
                 item.run(testContext, caseExecution);
