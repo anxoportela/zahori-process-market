@@ -27,17 +27,12 @@ import io.zahori.framework.core.Locator;
 import io.zahori.framework.core.Page;
 import io.zahori.framework.core.PageElement;
 import io.zahori.framework.core.TestContext;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class CartPage extends Page {
 
     private static final long serialVersionUID = -345345465237865L;
 
     private PageElement headerText = new PageElement(this, "Cart Header", Locator.xpath("//span[@class='title']"));
-    private List<WebElement> itemRemoveBtns = this.getDriver().findElements(By.xpath("//button[contains(@class,'cart_button')]"));
     private PageElement checkoutBtn = new PageElement(this, "Checkout button", Locator.xpath("//button[@id='checkout']"));
 
     public CartPage(TestContext testContext) {
@@ -48,11 +43,6 @@ public class CartPage extends Page {
         return headerText.isVisible();
     }
 
-    public void removeItems(){
-        for(WebElement e : itemRemoveBtns){
-            e.click();
-        }
-    }
 
     public void clickCheckout(){
         checkoutBtn.click();
