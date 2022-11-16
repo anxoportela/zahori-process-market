@@ -30,7 +30,7 @@ public class Item {
         }
 
         // Add random item to cart
-        item.selectRandomBtn();
+        item.selectItem();
 
         // Check item added correctly
         if (item.checkCartItems()){
@@ -38,6 +38,8 @@ public class Item {
         } else {
             testContext.logStepFailed("Item not added to cart");
         }
+
+        item.clickCartBtn();
 
 
     }

@@ -27,18 +27,13 @@ import io.zahori.framework.core.Locator;
 import io.zahori.framework.core.Page;
 import io.zahori.framework.core.PageElement;
 import io.zahori.framework.core.TestContext;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
-import java.util.Random;
 
 public class ItemsPage extends Page {
 
     private static final long serialVersionUID = -6789253497863489056L;
 
     private PageElement headerText = new PageElement(this, "Products Header", Locator.xpath("//span[@class='title']"));
-    private List<WebElement> itemBtns = this.getDriver().findElements(By.xpath("//button[@class='btn btn_primary btn_small btn_inventory']"));
+    private PageElement itemBtn = new PageElement(this, "Item button", Locator.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']"));
     private PageElement cartBtn = new PageElement(this, "Cart Button", Locator.xpath("//a[@class='shopping_cart_link']"));
     private PageElement cartQnty = new PageElement(this, "Cart quantity", Locator.xpath("//span[@class='shopping_cart_badge']"));
 
@@ -50,10 +45,8 @@ public class ItemsPage extends Page {
         return headerText.isVisible();
     }
 
-    public void selectRandomBtn() {
-        Random rnd = new Random();
-        WebElement rndElement = itemBtns.get(rnd.nextInt(itemBtns.size()));
-        rndElement.click();
+    public void selectItem() {
+        itemBtn.click();
     }
 
     public boolean checkCartItems(){
