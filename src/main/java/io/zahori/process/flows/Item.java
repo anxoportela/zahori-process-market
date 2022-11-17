@@ -3,7 +3,6 @@ package io.zahori.process.flows;
 import io.zahori.framework.core.TestContext;
 import io.zahori.model.process.CaseExecution;
 import io.zahori.process.pages.ItemsPage;
-import java.util.Map;
 
 public class Item {
 
@@ -15,12 +14,8 @@ public class Item {
         // Import flows
         Login login = new Login();
 
-        // Retrieve case data
-        Map<String, String> data = caseExecution.getCas().getDataMap();
-
         // Login on the webpage
         login.run(testContext, caseExecution);
-
 
         // Check items header
         if (item.checkHeader()){

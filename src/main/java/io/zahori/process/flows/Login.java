@@ -3,8 +3,6 @@ package io.zahori.process.flows;
 import io.zahori.framework.core.TestContext;
 import io.zahori.model.process.CaseExecution;
 import io.zahori.process.pages.HomePage;
-import org.apache.http.client.UserTokenHandler;
-import org.apache.xmlbeans.UserType;
 
 import java.util.Map;
 

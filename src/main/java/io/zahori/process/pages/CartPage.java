@@ -41,7 +41,6 @@ public class CartPage extends Page {
         return headerText.isVisible();
     }
 
-
     public void clickCheckout(){
         checkoutBtn.click();
     }
