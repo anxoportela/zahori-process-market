@@ -30,12 +30,11 @@ import io.zahori.framework.core.TestContext;
 
 public class HomePage extends Page {
 
-    private static final long serialVersionUID = -27893645236578346L;
-
     private PageElement logoImg = new PageElement(this, "Logo Image", Locator.xpath("//div[@class='bot_column']"));
     private PageElement inputUsername = new PageElement(this, "Input username", Locator.css("#user-name"));
     private PageElement inputPassword = new PageElement(this, "Input password", Locator.xpath("//input[@name='password']"));
     private PageElement loginButton = new PageElement(this, "Login Button", Locator.id("login-button"));
+    private PageElement errorLoginBox = new PageElement(this, "Login error box", Locator.xpath("//h3[@data-test='error']"));
 
     public HomePage(TestContext testContext) {
         super(testContext);
@@ -57,10 +56,24 @@ public class HomePage extends Page {
         loginButton.click();
     }
 
-    public void doLogin(String username, String password){
+    public void doLogin(String username, String password, String userType){
         fillUsername(username);
         fillPassword(password);
-        clickLoginBtn();
+        clickLoginBtn ();
+
+        if (userType.equals("banned")){
+            isBanned();
+        } else if (userType.equals("invalid")) {
+            notRegUser();
+        }
+    }
+
+    public boolean isBanned(){
+        return errorLoginBox.getText().contains("Sorry, this user has been locked out");
+    }
+
+    public boolean notRegUser(){
+        return errorLoginBox.getText().contains("Username and password do not match any user in this service");
     }
 
 

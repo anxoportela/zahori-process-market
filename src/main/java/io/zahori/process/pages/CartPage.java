@@ -30,8 +30,6 @@ import io.zahori.framework.core.TestContext;
 
 public class CartPage extends Page {
 
-    private static final long serialVersionUID = -345345465237865L;
-
     private PageElement headerText = new PageElement(this, "Cart Header", Locator.xpath("//span[@class='title']"));
     private PageElement checkoutBtn = new PageElement(this, "Checkout button", Locator.xpath("//button[@id='checkout']"));
 
